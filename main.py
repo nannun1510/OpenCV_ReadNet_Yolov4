@@ -10,8 +10,8 @@ with open("classes.txt", "r") as f:
     class_names = [cname.strip() for cname in f.readlines()]
 
 vc = cv2.VideoCapture("./img/demo.mp4")
-
-net = cv2.dnn.readNet("./model/yolov4.weights", "./model/yolov4.cfg")
+#rtsp://admin:aaaa1111@10.1.100.21:554 ! rtph264depay ! h264parse ! omxh264dec ! appsink max-buffers=1 drop=true
+net = cv2.dnn.readNet("./model/yolov4-tiny.weights", "./model/yolov4-tiny.cfg")
 net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
 net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
 
