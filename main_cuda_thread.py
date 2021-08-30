@@ -27,8 +27,6 @@ def readvid(i):
             ret, frame = vod.read()
             gpu_frame = cv2.cuda_GpuMat()
             gpu_frame.upload(frame)
-            #img = cv2.cuda.cvtColor(gpu_frame, cv2.COLOR_BGR2BGRA)
-            #img = cv2.cuda.resize(img, (int(1280 * scale), int(720 * scale)))
             frames[i] = gpu_frame.download()
         except:
             pass
