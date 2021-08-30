@@ -1,6 +1,6 @@
 person
 bicycle
-car
+dont_show
 motorcycle
 airplane
 bus

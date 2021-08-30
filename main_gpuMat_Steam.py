@@ -28,8 +28,6 @@ def showdetect():
             ret, frame = vod.read()
             gpu_frame = cv2.cuda_GpuMat()
             gpu_frame.upload(frame)
-            #img = cv2.cuda.cvtColor(gpu_frame, cv2.COLOR_BGR2BGRA)
-            #img = cv2.cuda.resize(img, (int(1280 * scale), int(720 * scale)))
             frame = gpu_frame.download()
 
             start = time()
@@ -43,10 +41,6 @@ def showdetect():
 
             fps_label = "FPS: %.2f " % (1 / (end - start))
             print(fps_label , end = "\r")
-            # cv2.putText(frame, fps_label, (0, 45), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-            # cv2.imshow('ss', frame)
-            # if cv2.waitKey(1) & 0xFF == ord('q'):
-            #     break
             ret, buffer = cv2.imencode('.jpg', frame)
             frame = buffer.tobytes()
             yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n') 
@@ -64,4 +58,4 @@ def index():
 
 #####################################################################
 if __name__ == '__main__':
-    app.run(host='localhost', port=5000,debug=True)
+    app.run(host='10.1.10.52', port=5000,debug=True)
